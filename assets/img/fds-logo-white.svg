@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 128" role="img" aria-label="First Digital Surveillance">
+  <title>First Digital Surveillance</title>
+  <defs>
+    <linearGradient id="fdsShieldW" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E33341"/>
+      <stop offset="1" stop-color="#A50E1C"/>
+    </linearGradient>
+    <clipPath id="fdsIrisW"><circle cx="62" cy="62" r="21"/></clipPath>
+  </defs>
+  <g transform="rotate(-24 62 62)">
+    <ellipse cx="62" cy="62" rx="58" ry="24" fill="none" stroke="#E33341" stroke-width="6"
+             stroke-linecap="round" stroke-dasharray="150 40 60 400" stroke-dashoffset="20"/>
+  </g>
+  <path d="M62 10 L107 27 v37 c0 27-20 44-45 51 -25-7-45-24-45-51 V27 Z" fill="url(#fdsShieldW)"/>
+  <circle cx="62" cy="62" r="25" fill="#FFFFFF"/>
+  <circle cx="62" cy="62" r="21.5" fill="#123A6B"/>
+  <g clip-path="url(#fdsIrisW)">
+    <g fill="#2E6FBF">
+      <path d="M62 62 L84 46 L92 68 Z"/><path d="M62 62 L74 88 L50 92 Z"/><path d="M62 62 L34 74 L30 50 Z"/>
+    </g>
+    <g fill="#4C93E0">
+      <path d="M62 62 L92 68 L74 88 Z"/><path d="M62 62 L50 92 L30 50 Z"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="2.4" fill="none">
+      <path d="M62 62 L84 46"/><path d="M62 62 L92 68"/><path d="M62 62 L74 88"/>
+      <path d="M62 62 L50 92"/><path d="M62 62 L34 74"/><path d="M62 62 L30 50"/>
+    </g>
+  </g>
+  <circle cx="55" cy="54" r="5" fill="#FFFFFF" opacity=".5"/>
+  <text x="128" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700"
+        font-style="italic" fill="#FFFFFF" letter-spacing="-1">First Digital</text>
+  <text x="132" y="100" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700"
+        fill="#F3B7BC" letter-spacing="7.5">SURVEILLANCE</text>
+</svg>

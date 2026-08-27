@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 128" role="img" aria-label="First Digital Surveillance">
+  <title>First Digital Surveillance</title>
+  <defs>
+    <linearGradient id="fdsShield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D8202F"/>
+      <stop offset="1" stop-color="#A50E1C"/>
+    </linearGradient>
+    <clipPath id="fdsIris"><circle cx="62" cy="62" r="21"/></clipPath>
+  </defs>
+
+  <!-- orbit ring -->
+  <g transform="rotate(-24 62 62)">
+    <ellipse cx="62" cy="62" rx="58" ry="24" fill="none" stroke="#BF1220" stroke-width="6"
+             stroke-linecap="round" stroke-dasharray="150 40 60 400" stroke-dashoffset="20"/>
+  </g>
+
+  <!-- shield -->
+  <path d="M62 10 L107 27 v37 c0 27-20 44-45 51 -25-7-45-24-45-51 V27 Z" fill="url(#fdsShield)"/>
+  <path d="M62 10 L107 27 v37 c0 27-20 44-45 51 -25-7-45-24-45-51 V27 Z" fill="none" stroke="#7E0A16" stroke-width="2"/>
+
+  <!-- aperture -->
+  <circle cx="62" cy="62" r="25" fill="#FFFFFF"/>
+  <circle cx="62" cy="62" r="21.5" fill="#123A6B"/>
+  <g clip-path="url(#fdsIris)">
+    <g fill="#2E6FBF">
+      <path d="M62 62 L84 46 L92 68 Z"/>
+      <path d="M62 62 L74 88 L50 92 Z"/>
+      <path d="M62 62 L34 74 L30 50 Z"/>
+    </g>
+    <g fill="#4C93E0">
+      <path d="M62 62 L92 68 L74 88 Z"/>
+      <path d="M62 62 L50 92 L30 50 Z"/>
+      <path d="M62 62 L30 50 L84 46 Z" opacity=".55"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="2.4" fill="none" opacity=".95">
+      <path d="M62 62 L84 46"/><path d="M62 62 L92 68"/><path d="M62 62 L74 88"/>
+      <path d="M62 62 L50 92"/><path d="M62 62 L34 74"/><path d="M62 62 L30 50"/>
+    </g>
+  </g>
+  <circle cx="62" cy="62" r="21.5" fill="none" stroke="#0B2A50" stroke-width="2"/>
+  <circle cx="55" cy="54" r="5" fill="#FFFFFF" opacity=".5"/>
+
+  <!-- wordmark -->
+  <text x="128" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700"
+        font-style="italic" fill="#1D4F91" letter-spacing="-1">First Digital</text>
+  <text x="132" y="100" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700"
+        fill="#BF1220" letter-spacing="7.5">SURVEILLANCE</text>
+</svg>
