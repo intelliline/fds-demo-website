@@ -151,6 +151,65 @@ function initChrome() {
   $$('[data-count]').forEach(el => cio.observe(el));
 }
 
+
+/* =====================================================================
+   Hero service carousel
+   ===================================================================== */
+function initHeroSlider() {
+  const wrap = $('.heroslides'); if (!wrap) return;
+  const slides = $$('.hslide', wrap);
+  const dots = $$('.hdot');
+  const count = $('.hcount b');
+  if (slides.length < 2) return;
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DWELL = 6500;
+  let i = 0, timer = null, paused = false;
+
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('is-on', k === i));
+    dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+    if (count) count.textContent = String(i + 1).padStart(2, '0');
+  }
+  function next(step) { show(i + step); restart(); }
+  function restart() {
+    clearInterval(timer);
+    if (reduced || paused) return;
+    timer = setInterval(() => show(i + 1), DWELL);
+  }
+
+  dots.forEach(d => d.addEventListener('click', () => next(+d.dataset.go - i)));
+  $$('.harrow').forEach(a => a.addEventListener('click', () => next(+a.dataset.dir)));
+
+  // pause while the visitor is reading or interacting
+  const hero = wrap.closest('.hero') || wrap;
+  const hold = v => { paused = v; wrap.classList.toggle('is-paused', v); restart(); };
+  hero.addEventListener('mouseenter', () => hold(true));
+  hero.addEventListener('mouseleave', () => hold(false));
+  hero.addEventListener('focusin', () => hold(true));
+  hero.addEventListener('focusout', () => hold(false));
+  document.addEventListener('visibilitychange', () => hold(document.hidden));
+
+  // keyboard
+  hero.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); next(1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); next(-1); }
+  });
+
+  // swipe
+  let x0 = null;
+  wrap.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) next(dx < 0 ? 1 : -1);
+    x0 = null;
+  }, { passive: true });
+
+  show(0); restart();
+}
+
 /* =====================================================================
    Live camera feeds — real clock in the HUD
    ===================================================================== */
@@ -557,6 +616,6 @@ const FDSChat = {
 
 /* ===================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  initChrome(); initFeeds(); initCallback(); initPhoneDemo(); initBooker();
+  initChrome(); initHeroSlider(); initFeeds(); initCallback(); initPhoneDemo(); initBooker();
   initForms(); initEmbeds(); FDSChat.init();
 });
