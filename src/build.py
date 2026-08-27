@@ -9,6 +9,7 @@ PHONE_RAW = "+13109014954"
 EMAIL = "info@cctvinstallation-losangeles.com"
 ADDR = "3183 Wilshire Blvd Ste #196D10"
 CITY, STATE, ZIP = "Los Angeles", "CA", "90010"
+ASSET_V = "3"   # bump to force browsers past a cached stylesheet or script
 
 # ================================================================ icons
 I = {
@@ -466,7 +467,7 @@ def page(fname, title, desc, body, schemas, keywords):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v={ASSET_V}">
 
 {ld}
 <!-- Analytics + CRM routing configured in assets/js/fds.js -->
@@ -479,7 +480,7 @@ def page(fname, title, desc, body, schemas, keywords):
 </main>
 {footer()}
 {CHAT}
-<script src="assets/js/fds.js"></script>
+<script src="assets/js/fds.js?v={ASSET_V}"></script>
 </body>
 </html>
 """
@@ -658,18 +659,24 @@ def hero_slides():
     <a class="btn btn--glass btn--lg" href="services.html#{slug}">{cta} {I['arrow']}</a>
   </div>
 </div>""")
+    return '<div class="heroslides" aria-roledescription="carousel" aria-label="Services">' + "".join(out) + '</div>'
+
+def hero_arrows():
+    """Big side arrows overlaying the hero — only where the viewport has gutters."""
+    return f"""
+  <button class="heroarrow harrow harrow--prev" data-dir="-1" type="button" aria-label="Previous service">{I['arrow']}</button>
+  <button class="heroarrow harrow harrow--next" data-dir="1" type="button" aria-label="Next service">{I['arrow']}</button>"""
+
+def hero_bar():
+    """Inline control bar, directly under the slide's call-to-action buttons."""
     dots = "".join(f'<button class="hdot{" is-on" if i==0 else ""}" data-go="{i}" type="button" '
                    f'aria-label="Show slide {i+1}: {s[1]}"><i></i></button>' for i,s in enumerate(HERO_SLIDES))
-    return f"""<div class="heroslides" aria-roledescription="carousel" aria-label="Services">
-{''.join(out)}
-</div>
-<div class="heronav">
-  <button class="harrow" data-dir="-1" type="button" aria-label="Previous service">{I['arrow']}</button>
-  <button class="harrow" data-dir="1" type="button" aria-label="Next service">{I['arrow']}</button>
-  <div class="hdots">{dots}</div>
-  <span class="hcount"><b>01</b> / {len(HERO_SLIDES):02d}</span>
-</div>"""
-
+    return f"""<div class="herobar">
+    <button class="hbtn harrow" data-dir="-1" type="button" aria-label="Previous service">{I['arrow']}</button>
+    <button class="hbtn harrow" data-dir="1" type="button" aria-label="Next service">{I['arrow']}</button>
+    <div class="hdots">{dots}</div>
+    <span class="hcount"><b>01</b> / {len(HERO_SLIDES):02d}</span>
+  </div>"""
 
 # ================================================================ PAGES
 def build_home():
@@ -678,11 +685,13 @@ def build_home():
     body = f"""
 <section class="hero">
   <div class="hero__mesh"></div><div class="hero__grid"></div>
+  {hero_arrows()}
   <div class="container">
     <div class="hero__inner">
       <div>
         <span class="pill"><em>17 YEARS</em> Los Angeles' #1 rated low-voltage contractor</span>
         {hero_slides()}
+        {hero_bar()}
         <div class="trustrow">
           <span class="faces">
             <span style="background:#BF1220">GK</span><span style="background:#1D4F91">DL</span>
