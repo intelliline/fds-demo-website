@@ -628,6 +628,49 @@ def speed_to_lead():
   </div>
 </section>"""
 
+
+# ---------------------------------------------------------------- hero slides
+HERO_SLIDES = [
+ ("cam","Commercial Security Camera Installation",
+  'Security cameras that actually get <span class="grad">watched, answered</span> and acted on.',
+  "4K HD and IP surveillance for retail, warehouses, offices and industrial sites — with live viewing, "
+  "recorded playback and person and vehicle alerts on any phone.", "cctv-camera-installation","See camera installation"),
+ ("lock","Door Access / Fob Access System Installation",
+  'Know exactly <span class="grad">who opened which door</span>, and when.',
+  "Key fob, card, keypad, mobile credential and biometric access control — multi-door and multi-site, "
+  "with schedules and a full audit trail tied straight to your cameras.", "door-access-control","See door access systems"),
+ ("cable","Structured Cabling Installation",
+  'Structured cabling, <span class="grad">certified, labeled</span> and done once.',
+  "Cat5e, Cat6, Cat6a and fiber infrastructure — racks, patch panels and certified test results — "
+  "engineered so everything you add later just plugs in.", "structured-cabling","See structured cabling"),
+]
+
+def hero_slides():
+    out = []
+    for i,(key,name,head,sub,slug,cta) in enumerate(HERO_SLIDES):
+        out.append(f"""<div class="hslide{' is-on' if i==0 else ''}" data-slide="{i}" role="group"
+     aria-roledescription="slide" aria-label="{i+1} of {len(HERO_SLIDES)}: {name}">
+  <span class="hslide__eyebrow">{I[key]}{name}</span>
+  <h1>{head}</h1>
+  <p class="hero__sub">{sub}</p>
+  <div class="hero__cta">
+    <a class="btn btn--red btn--lg" href="tel:{PHONE_RAW}">{I['phone']}Call <span data-phone>{PHONE}</span></a>
+    <a class="btn btn--glass btn--lg" href="services.html#{slug}">{cta} {I['arrow']}</a>
+  </div>
+</div>""")
+    dots = "".join(f'<button class="hdot{" is-on" if i==0 else ""}" data-go="{i}" type="button" '
+                   f'aria-label="Show slide {i+1}: {s[1]}"><i></i></button>' for i,s in enumerate(HERO_SLIDES))
+    return f"""<div class="heroslides" aria-roledescription="carousel" aria-label="Services">
+{''.join(out)}
+</div>
+<div class="heronav">
+  <button class="harrow" data-dir="-1" type="button" aria-label="Previous service">{I['arrow']}</button>
+  <button class="harrow" data-dir="1" type="button" aria-label="Next service">{I['arrow']}</button>
+  <div class="hdots">{dots}</div>
+  <span class="hcount"><b>01</b> / {len(HERO_SLIDES):02d}</span>
+</div>"""
+
+
 # ================================================================ PAGES
 def build_home():
     prod = "".join(f'<article class="tile" data-reveal><div class="tile__ico">{I[k]}</div><h3>{n}</h3><p>{d}</p></article>'
@@ -639,15 +682,7 @@ def build_home():
     <div class="hero__inner">
       <div>
         <span class="pill"><em>17 YEARS</em> Los Angeles' #1 rated low-voltage contractor</span>
-        <h1>Structured cabling installation, <span class="grad">certified, labeled</span> and done once.</h1>
-        <p class="hero__sub">First Digital Surveillance designs and installs Cat5e, Cat6, Cat6a and fiber
-        infrastructure — plus the cameras, access control and intercom that run on it — across LA, Orange,
-        San Bernardino and Riverside counties. Backed by a
-        <strong style="color:#fff">60-second callback</strong> and free on-site estimates.</p>
-        <div class="hero__cta">
-          <a class="btn btn--red btn--lg" href="tel:{PHONE_RAW}">{I['phone']}Call <span data-phone>{PHONE}</span></a>
-          <a class="btn btn--glass btn--lg" href="#speed">{I['bolt']}See how fast we respond</a>
-        </div>
+        {hero_slides()}
         <div class="trustrow">
           <span class="faces">
             <span style="background:#BF1220">GK</span><span style="background:#1D4F91">DL</span>
@@ -669,6 +704,53 @@ def build_home():
             {feed("thermal","CAM 04","PERIMETER",("feed__box feed__box--heat feed__box--amber","THERMAL 34.1°C"),"THRM")}
           </div>
           <div class="nvr__foot"><span><b>4 of 16</b> channels · 4K @ 30fps</span><span>30-day retention · Los Angeles, CA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="welcome">
+  <div class="container">
+    <div class="split">
+      <div data-reveal>
+        <span class="eyebrow">Serving Los Angeles, Orange, San Bernardino &amp; Riverside County</span>
+        <h2>Welcome to First Digital Surveillance</h2>
+        <p class="lead">Your top choice for
+        <a href="services.html#cctv-camera-installation">CCTV security camera installation in Los Angeles</a>.
+        We specialize in delivering top-quality security and surveillance services throughout Los Angeles,
+        Long Beach, Santa Clarita, Glendale, Lancaster, Pomona, Torrance and the surrounding areas.</p>
+        <p>Our commitment lies in providing professional security camera installations and comprehensive CCTV
+        security camera systems. Our services encompass a wide range of solutions, including door access
+        control systems, structured cabling, phone entry and
+        <a href="services.html#phone-entry-intercom">intercom</a> systems, off-site monitoring services, as
+        well as CCTV camera installation and repair.</p>
+        <p>We take pride in our experienced and knowledgeable staff, who are dedicated to delivering
+        affordable home security cameras, commercial security cameras and video surveillance installation
+        for homeowners, business owners and property managers.</p>
+        <p>With over a decade of experience and a history of serving thousands of properties, First Digital
+        Surveillance is dedicated to making homes and properties safer. Our indoor and outdoor security
+        cameras, combined with our CCTV security camera system, let businesses and property owners reduce
+        the risk of theft and monitor their properties 24/7. For added security, we offer access control
+        systems and video intercoms as additional layers of protection.</p>
+        <p class="closer">Backed by a <b>60-second callback</b> and free on-site estimates.</p>
+        <p style="margin-bottom:0"><a class="btn btn--red" href="contact.html">Get my free estimate</a></p>
+      </div>
+
+      <div data-reveal>
+        <div class="panel">
+          <div class="panel__top">
+            <span class="panel__ico">{I['shield']}</span>
+            <span><b>Everything under one roof</b><small>One company, one crew, one invoice</small></span>
+          </div>
+          <ul class="checklist">
+            <li>{I['check']}<span><b>CCTV installation &amp; repair</b> — indoor and outdoor, residential and commercial</span></li>
+            <li>{I['check']}<span><b>Door access control</b> — fob, card, keypad and mobile credentials</span></li>
+            <li>{I['check']}<span><b>Structured cabling</b> — Cat5e, Cat6, Cat6a and fiber</span></li>
+            <li>{I['check']}<span><b>Phone entry &amp; intercom</b> — video entry and tenant directories</span></li>
+            <li>{I['check']}<span><b>Off-site monitoring</b> — live operators, guard tours and dispatch</span></li>
+          </ul>
+          <p class="panel__foot">Homeowners &middot; Business owners &middot; Property managers</p>
         </div>
       </div>
     </div>
