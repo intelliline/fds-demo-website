@@ -1,0 +1,4 @@
+# Design preview host — intentionally not indexed.
+# The production robots.txt for the live domain is in robots.production.txt
+User-agent: *
+Disallow: /
