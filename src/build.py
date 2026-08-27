@@ -638,10 +638,11 @@ def build_home():
   <div class="container">
     <div class="hero__inner">
       <div>
-        <span class="pill"><em>17 YEARS</em> Los Angeles' #1 rated CCTV installer</span>
-        <h1>Security cameras that actually get <span class="grad">watched, answered</span> and acted on.</h1>
-        <p class="hero__sub">First Digital Surveillance designs, installs and services 4K CCTV, access control and
-        intercom systems across LA, Orange, San Bernardino and Riverside counties — backed by a
+        <span class="pill"><em>17 YEARS</em> Los Angeles' #1 rated low-voltage contractor</span>
+        <h1>Structured cabling installation, <span class="grad">certified, labeled</span> and done once.</h1>
+        <p class="hero__sub">First Digital Surveillance designs and installs Cat5e, Cat6, Cat6a and fiber
+        infrastructure — plus the cameras, access control and intercom that run on it — across LA, Orange,
+        San Bernardino and Riverside counties. Backed by a
         <strong style="color:#fff">60-second callback</strong> and free on-site estimates.</p>
         <div class="hero__cta">
           <a class="btn btn--red btn--lg" href="tel:{PHONE_RAW}">{I['phone']}Call <span data-phone>{PHONE}</span></a>
@@ -659,7 +660,7 @@ def build_home():
 
       <div>
         <div class="nvr">
-          <div class="nvr__bar"><i></i><i></i><i></i><span class="t">FDS-NVR-01 · LIVE WALL</span>
+          <div class="nvr__bar"><i></i><i></i><i></i><span class="t">FDS-NVR-01 · CABLED &amp; COMMISSIONED</span>
             <span class="live"><i></i>LIVE</span></div>
           <div class="feedwall">
             {feed("drive","CAM 01","FRONT DRIVE",("feed__box feed__box--car","VEHICLE 98%"),"IR")}
